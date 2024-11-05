@@ -11,7 +11,8 @@ public class MoodSicApp {
         String[] languages = {"english", "indonesia", "korea"};
 
         String[][] songsEng = {
-            {""},
+            {"American Town - Ed Sheeran",
+            "Wildest Dreams - Taylor Swift"},
 
             {"Someone Like You - Adele", "Fix You - Coldplay"},
 
@@ -79,7 +80,7 @@ public class MoodSicApp {
 
         // Jika mood tidak ditemukan, tampilkan pesan kesalahan dan keluar
         if (moodIndex == -1) {
-            System.out.println("Coudln't find mood. Please try again.");
+            System.out.println("Oh no... Couldn't find mood. Please try again.");
         } else {
             // Meminta pengguna memilih bahasa setelah mood dimasukkan
             System.out.println("Choose the language (english/indonesia/korea): ");
