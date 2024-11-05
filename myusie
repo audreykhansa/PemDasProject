@@ -1,76 +1,72 @@
 import java.util.Scanner;
 
-public class MoodSicApp {
+public class MyusieApp {
     public static void main(String[] args) {
         Scanner musicYeehaw = new Scanner(System.in);
 
-        // Daftar mood yang tersedia
-        String[] moods = {"happy", "sad", "relaxed", "excited", "angry", "in love"};
+        String[] moods = {"happy", "sad", "excited", "in love"};
 
-        // Daftar bahasa yang tersedia
         String[] languages = {"english", "indonesia", "korea"};
 
-        String[][] songsEng = {
-            {"American Town - Ed Sheeran",
-            "Wildest Dreams - Taylor Swift"},
+        String[][] engSongs = {
+            {"Wildest Dreams (Taylor's Version) - Taylor Swift",
+            "American Town - Ed Sheeran",
+            "The Golden Years - Joshua Bassett"},
 
-            {"Someone Like You - Adele", "Fix You - Coldplay"},
+            {"You're Losing Me (From The Vault) - Taylor Swift",
+            "Visiting Hours - Ed Sheeran",
+            "Malibu Nights - LANY"},
 
-            {"Weightless - Marconi Union", "River Flows in You - Yiruma"},
+            {"Long Live (Taylor's Version) - Taylor Swift",
+            "Out of the Old - Olivia Rodrigo",
+            "Cherry Blossom - Joshua Bassett"},
 
-            {"Out of the Old - Olivia Rodrigo",},
-
-            {"In the End - Linkin Park", "Break Stuff - Limp Bizkit"},
-
-            {"Little Things - One Direction",
-            "I Think They Call This Love - Elliot James, Reay",
-            "Call It What You Want - Taylor Swift"}
+            {"Call It What You Want - Taylor Swift",
+            "Little Things - One Direction",
+            "I Think They Call This Love - Elliot James, Reay"},
         };
 
-        String[][] songsIndo = {
+        String[][] indoSongs = {
             {"Tujuh Belas - Tulus",
-            "Menikmati Hariku - Sherina Munaf"},
+            "Menikmati Hariku - Sherina Munaf",
+            "Selamat Pagi - RAN"},
 
             {"Diri - Tulus",
-            "Jalan Pulang - Yura Yunita",
-            "Duar Hidup - Donne Maula"},
+            "Sudut Memori - Yura Yunita",
+            "Daur Hidup - Donne Maula"},
 
-            {"Weightless - Marconi Union", "River Flows in You - Yiruma"},
-
-            {"Lekas - Tulus",},
-
-            {},
+            {"Lekas - Tulus",
+            "Merakit - Yura Yunita",
+            "Melompat Lebih Tinggi - Sheila On 7"},
 
             {"Jatuh Suka - Tulus",
             "Jendela Kelas Satu - Iwan Fals",
-            "Satu-satunya - HIVI"}
+            "Satu-satunya - Hivi!"}
         };
 
-        String[][] songsKor = {
-            {},
+        String[][] korSongs = {
+            {"The View - Stray Kids",
+            "I Can't Stop Me - TWICE",
+            "SNEAKERS - ITZY"},
 
             {"Silent Cry - Stray Kids",
             "Encore - GOT7",
             "Hug - Seventeen"},
 
-            {"Weightless - Marconi Union", "River Flows in You - Yiruma"},
-
-            {"Don't Stop Me Now - Queen", "Can't Hold Us - Macklemore"},
-
-            {},
+            {"COMFLEX - Stray Kids",
+            "Cheers to Youth - Seventeen",
+            "WANNABE - ITZY"},
 
             {"Sorry, I Love You - Stray Kids",
             "Love Wins All - IU",
             "LOCO - ITZY"}
         };
 
-        // Meminta pengguna memasukkan mood terlebih dahulu
-        System.out.println("Hey, this is Myusie. What are you feeling today? (happy, sad, relaxed, excited, angry, in love): ");
+        System.out.println("Hey, this is Myusie. What are you feeling today? (happy/sad/excited/in love): ");
         String userMood = musicYeehaw.nextLine().toLowerCase();
 
         int moodIndex = -1;
 
-        // Mencari indeks mood yang dimasukkan pengguna
         for (int i = 0; i < moods.length; i++) {
             if (userMood.equals(moods[i])) {
                 moodIndex = i;
@@ -78,34 +74,31 @@ public class MoodSicApp {
             }
         }
 
-        // Jika mood tidak ditemukan, tampilkan pesan kesalahan dan keluar
         if (moodIndex == -1) {
             System.out.println("Oh no... Couldn't find mood. Please try again.");
         } else {
-            // Meminta pengguna memilih bahasa setelah mood dimasukkan
             System.out.println("Choose the language (english/indonesia/korea): ");
             String userLanguage = musicYeehaw.nextLine().toLowerCase();
 
             if (userLanguage.equals("english")) {
                 System.out.println("Songs recommendations if you are " + userMood + ":");
-                for (String song : songsEng[moodIndex]) {
+                for (String song : engSongs[moodIndex]) {
                     System.out.println("- " + song);
                 }
             } else if (userLanguage.equals("indonesia")) {
                 System.out.println("Song recommendations if you are " + userMood + ":");
-                for (String song : songsIndo[moodIndex]) {
+                for (String song : indoSongs[moodIndex]) {
                     System.out.println("- " + song);
                 }
             } else if (userLanguage.equals("korea")) {
                 System.out.println("Song recommendations if you are " + userMood + ":");
-                for (String song : songsKor[moodIndex]) {
+                for (String song : korSongs[moodIndex]) {
                     System.out.println("- " + song);
                 }
             } else {
                 System.out.println("Please try again...");
             }
         }
-
         musicYeehaw.close();
     }
 }
