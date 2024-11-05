@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MyusieApp {
+public class myusie {
     public static void main(String[] args) {
         Scanner musicYeehaw = new Scanner(System.in);
 
@@ -25,80 +25,3 @@ public class MyusieApp {
             "Little Things - One Direction",
             "I Think They Call This Love - Elliot James, Reay"},
         };
-
-        String[][] indoSongs = {
-            {"Tujuh Belas - Tulus",
-            "Menikmati Hariku - Sherina Munaf",
-            "Selamat Pagi - RAN"},
-
-            {"Diri - Tulus",
-            "Sudut Memori - Yura Yunita",
-            "Daur Hidup - Donne Maula"},
-
-            {"Lekas - Tulus",
-            "Merakit - Yura Yunita",
-            "Melompat Lebih Tinggi - Sheila On 7"},
-
-            {"Jatuh Suka - Tulus",
-            "Jendela Kelas Satu - Iwan Fals",
-            "Satu-satunya - Hivi!"}
-        };
-
-        String[][] korSongs = {
-            {"The View - Stray Kids",
-            "I Can't Stop Me - TWICE",
-            "SNEAKERS - ITZY"},
-
-            {"Silent Cry - Stray Kids",
-            "Encore - GOT7",
-            "Hug - Seventeen"},
-
-            {"COMFLEX - Stray Kids",
-            "Cheers to Youth - Seventeen",
-            "WANNABE - ITZY"},
-
-            {"Sorry, I Love You - Stray Kids",
-            "Love Wins All - IU",
-            "LOCO - ITZY"}
-        };
-
-        System.out.println("Hey, this is Myusie. What are you feeling today? (happy/sad/excited/in love): ");
-        String userMood = musicYeehaw.nextLine().toLowerCase();
-
-        int moodIndex = -1;
-
-        for (int i = 0; i < moods.length; i++) {
-            if (userMood.equals(moods[i])) {
-                moodIndex = i;
-                break;
-            }
-        }
-
-        if (moodIndex == -1) {
-            System.out.println("Oh no... Couldn't find mood. Please try again.");
-        } else {
-            System.out.println("Choose the language (english/indonesia/korea): ");
-            String userLanguage = musicYeehaw.nextLine().toLowerCase();
-
-            if (userLanguage.equals("english")) {
-                System.out.println("Songs recommendations if you are " + userMood + ":");
-                for (String song : engSongs[moodIndex]) {
-                    System.out.println("- " + song);
-                }
-            } else if (userLanguage.equals("indonesia")) {
-                System.out.println("Song recommendations if you are " + userMood + ":");
-                for (String song : indoSongs[moodIndex]) {
-                    System.out.println("- " + song);
-                }
-            } else if (userLanguage.equals("korea")) {
-                System.out.println("Song recommendations if you are " + userMood + ":");
-                for (String song : korSongs[moodIndex]) {
-                    System.out.println("- " + song);
-                }
-            } else {
-                System.out.println("Please try again...");
-            }
-        }
-        musicYeehaw.close();
-    }
-}
