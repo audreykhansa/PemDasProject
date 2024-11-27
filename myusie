@@ -1,27 +1,134 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class myusie {
     public static void main(String[] args) {
-        Scanner musicYeehaw = new Scanner(System.in);
+        Scanner myoosie = new Scanner(System.in);
 
         String[] moods = {"happy", "sad", "excited", "in love"};
-
         String[] languages = {"english", "indonesia", "korea"};
 
         String[][] engSongs = {
             {"Wildest Dreams (Taylor's Version) - Taylor Swift",
             "American Town - Ed Sheeran",
             "The Golden Years - Joshua Bassett"},
-
             {"You're Losing Me (From The Vault) - Taylor Swift",
             "Visiting Hours - Ed Sheeran",
             "Malibu Nights - LANY"},
-
             {"Long Live (Taylor's Version) - Taylor Swift",
             "Out of the Old - Olivia Rodrigo",
             "Cherry Blossom - Joshua Bassett"},
-
             {"Call It What You Want - Taylor Swift",
             "Little Things - One Direction",
             "I Think They Call This Love - Elliot James Reay"},
         };
+
+        String[][] indoSongs = {
+            {"Tujuh Belas - Tulus",
+            "Menikmati Hariku - Sherina Munaf",
+            "Selamat Pagi - RAN"},
+            {"Diri - Tulus",
+            "Sudut Memori - Yura Yunita",
+            "Daur Hidup - Donne Maula"},
+            {"Lekas - Tulus",
+            "Merakit - Yura Yunita",
+            "Melompat Lebih Tinggi - Sheila On 7"},
+            {"Jatuh Suka - Tulus",
+            "Jendela Kelas Satu - Iwan Fals",
+            "Satu-satunya - Hivi!"}
+        };
+
+        String[][] korSongs = {
+            {"The View - Stray Kids",
+            "I Can't Stop Me - TWICE",
+            "SNEAKERS - ITZY"},
+            {"Silent Cry - Stray Kids",
+            "Encore - GOT7",
+            "Hug - Seventeen"},
+            {"COMFLEX - Stray Kids",
+            "Cheers to Youth - Seventeen",
+            "WANNABE - ITZY"},
+            {"Sorry, I Love You - Stray Kids",
+            "Love Wins All - IU",
+            "LOCO - ITZY"}
+        };
+
+        LinkedList<String> songQueue = new LinkedList<>();
+
+        System.out.println("Hey, this is Myusie. What are you feeling today? (happy/sad/excited/in love): ");
+        String userMood = myoosie.nextLine().toLowerCase();
+
+        int moodIndex = findMoodIndex(userMood, moods);
+
+        if (moodIndex == -1) {
+            System.out.println("Oh no... Couldn't find mood. Please try again.");
+        } else {
+            System.out.println("Choose the language (english/indonesia/korea): ");
+            String userLanguage = myoosie.nextLine().toLowerCase();
+
+            String[][] chosenSongs = null;
+            if (userLanguage.equals("english")) {
+                chosenSongs = engSongs;
+            } else if (userLanguage.equals("indonesia")) {
+                chosenSongs = indoSongs;
+            } else if (userLanguage.equals("korea")) {
+                chosenSongs = korSongs;
+            } else {
+                System.out.println("Language not recognized. Please try again.");
+            }
+
+            if (chosenSongs != null) {
+                displaySongs(userMood, chosenSongs, moodIndex);
+                addSongsToQueue(chosenSongs[moodIndex], songQueue, myoosie);
+                System.out.println("Your current song queue:");
+                displayQueue(songQueue);
+            }
+        }
+        myoosie.close();
+    }
+
+    public static int findMoodIndex(String userMood, String[] moods) {
+        for (int i = 0; i < moods.length; i++) {
+            if (userMood.equals(moods[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void displaySongs(String userMood, String[][] songs, int moodIndex) {
+        System.out.println("Song recommendations if you are " + userMood + ":");
+        for (int i = 0; i < songs[moodIndex].length; i++) {
+            System.out.println((i + 1) + ". " + songs[moodIndex][i]);
+        }
+    }
+
+    public static void addSongsToQueue(String[] songs, LinkedList<String> queue, Scanner myoosie) {
+        String choice;
+        do {
+            System.out.println("Enter the number of the song to add to the queue or type 'done' to finish:");
+            choice = myoosie.nextLine();
+            if (choice.matches("\\d+")) {
+                int songIndex = Integer.parseInt(choice) - 1;
+                if (songIndex >= 0 && songIndex < songs.length) {
+                    queue.add(songs[songIndex]);
+                    System.out.println("'" + songs[songIndex] + "' has been added to your queue.");
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            } else if (!choice.equalsIgnoreCase("done")) {
+                System.out.println("Invalid input. Please enter a number or 'done'.");
+            }
+        } while (!choice.equalsIgnoreCase("done"));
+    }
+
+    public static void displayQueue(LinkedList<String> queue) {
+        if (queue.isEmpty()) {
+            System.out.println("Your queue is empty.");
+        } else {
+            for (int i = 0; i < queue.size(); i++) {
+                System.out.println((i + 1) + ". " + queue.get(i));
+            }
+        }
+    }
+}
